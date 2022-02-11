@@ -12,8 +12,8 @@ class UserInformation(models.Model):
                               help_text='Enter your e-mail.')
     status = models.CharField(max_length=30, default='Allowed', verbose_name='Status account',
                               choices=[
-                                  ("A", "Allowed"),
-                                  ("B", "Blocked"),
+                                  ("Allowed", "Allowed"),
+                                  ("Blocked", "Blocked"),
                               ]
                               )
 

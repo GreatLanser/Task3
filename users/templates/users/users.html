@@ -1,0 +1,42 @@
+{% extends 'users/layout.html' %}
+{% block content %}
+    <h1>User List</h1>
+    {% if users_list %}
+        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary">Block</button>
+                <button type="button" class="btn btn-secondary">Unblock</button>
+                <button type="button" class="btn btn-secondary">Delete</button>
+            </div>
+        </div>
+    <table class="table">
+        <tr>
+            <th>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+            </th>
+            <th scope="col">User Id</th>
+            <th scope="col">User name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Status</th>
+        </tr>
+        {% for user in users_list %}
+        <tr>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+            </td>
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.status }}</td>
+        </tr>
+      {% endfor %}
+
+    </table>
+    {% else %}
+      <p> All users are deleted. :(</p>
+    {% endif %}
+{% endblock %}
