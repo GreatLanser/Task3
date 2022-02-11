@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" />
 </head>
 <body>
     {% block content %}{% endblock %}

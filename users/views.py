@@ -4,7 +4,7 @@ from .models import UserInformation
 def login(request):
     return render(
         request,
-        'login.html',
+        'users/login.html',
         context={
             'title': 'Log in'
         }
@@ -15,7 +15,7 @@ def home(request):
     status = UserInformation.status
     return render(
         request,
-        'home.html',
+        'users/home.html',
         context={
             'title': 'Home page',
             'usernames': usernames,
