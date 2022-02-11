@@ -16,15 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
-from users import views
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path('', include('users.urls')),
     path('', RedirectView.as_view(url='/login/', permanent=True))
 ]
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

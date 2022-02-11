@@ -1,12 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import UserInformation
+from .models import User
 
 
-class UserInformationAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     list_display = ('id', 'username', 'email', 'status')
     list_filter = ('status',)
 
 
-admin.site.register(UserInformation, UserInformationAdmin)
+admin.site.register(User, UserAdmin)
