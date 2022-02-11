@@ -6,7 +6,7 @@ from .models import UserInformation
 def login(request):
     return render(
         request,
-        'users/login.html',
+        'users/registration/../templates/registration/login.html',
         context={
             'title': 'Log in'
         }
