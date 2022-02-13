@@ -30,12 +30,7 @@ class PersonManager(BaseUserManager):
 
 class Users(AbstractUser):
     objects = PersonManager()
-    status = models.CharField(max_length=30, default='Allowed', verbose_name='Status account',
-                              choices=[
-                                  ("Allowed", "Allowed"),
-                                  ("Blocked", "Blocked"),
-                              ]
-                              )
+    is_blocked = models.BooleanField(default=False, verbose_name='Status account')
 
     def __str__(self):
         return self.username

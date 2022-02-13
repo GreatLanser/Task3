@@ -1,8 +1,7 @@
 {% extends 'users/layout.html' %}
 {% block content %}
 
-    {% if user.is_authenticated %}
-    {% else %}
+    {% if not user.is_authenticated or user.is_blocked %}
         <meta http-equiv="refresh" content="0;URL={% url 'logout' %}" />
     {% endif %}
 
@@ -19,7 +18,7 @@
         <tr>
             <th>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                 </div>
             </th>
             <th scope="col">User Id</th>
@@ -33,7 +32,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                 </div>
             </td>
             <th scope="row">{{ user.id }}</th>
@@ -41,7 +40,13 @@
             <td>{{ user.email }}</td>
             <td>{{ user.last_login }}</td>
             <td>{{ user.date_joined }}</td>
-            <td>{{ user.status }}</td>
+            <td>
+                {% if user.is_blocked %}
+                    Blocked
+                {% else %}
+                    Allowed
+                {% endif %}
+            </td>
         </tr>
       {% endfor %}
 
