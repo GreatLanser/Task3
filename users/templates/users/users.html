@@ -1,24 +1,35 @@
 {% extends 'users/layout.html' %}
 {% block content %}
-
+    <script>
+        function change_all() {
+            let arr_elems = document.getElementsByClassName('form-check-input');
+            let value = !!document.getElementsByName('select_all')[0].checked;
+            for (let i=0; i<arr_elems.length; i++) {
+                arr_elems[i].checked = value;
+            }
+        }
+    </script>
     {% if not user.is_authenticated or user.is_blocked %}
         <meta http-equiv="refresh" content="0;URL={% url 'logout' %}" />
     {% endif %}
 
     <h1>User List</h1>
     {% if users_list %}
-        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary">Block</button>
-                <button type="button" class="btn btn-secondary">Unblock</button>
-                <button type="button" class="btn btn-secondary">Delete</button>
+        <form method="post" action="users.html">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary">Block</button>
+                    <button type="button" class="btn btn-secondary">Unblock</button>
+                    <button type="button" class="btn btn-secondary">Delete</button>
+                </div>
             </div>
-        </div>
+        </form>
     <table class="table">
         <tr>
             <th>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="select_all"
+                           onclick="change_all()">
                 </div>
             </th>
             <th scope="col">User Id</th>
@@ -32,7 +43,8 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                           name="{{ user.id }}">
                 </div>
             </td>
             <th scope="row">{{ user.id }}</th>
