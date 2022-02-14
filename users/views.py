@@ -4,9 +4,6 @@ from .models import Users
 from .forms import UserRegistrationForm
 from django.http import HttpRequest, HttpResponse
 
-request = HttpRequest
-response = HttpResponse
-
 
 def register(request):
     if request.method == 'POST':
@@ -21,7 +18,18 @@ def register(request):
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
 
+def status_change(request):
+    if request.method == 'POST':
+        if request.POST:
+            content = request.POST.get('unblock', 'not')
+            return render(request, 'users/status_change.html', {
+                'title': 'hehe',
+                'content': content,
+            })
+
+
 class UserListView(generic.ListView):
     model = Users
     template_name = 'users/users.html'
     context_object_name = 'users_list'
+
