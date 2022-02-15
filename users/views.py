@@ -18,6 +18,12 @@ def register(request):
 
 
 def status_change(request):
+    auth_user = Users.objects.get(id=request.user.id)
+    if auth_user:
+        if auth_user.is_blocked == 1:
+            return render(request, 'users/status_change.html')
+    else:
+        return render(request, 'users/status_change.html')
     if request.method == 'POST':
         if request.POST:
             keys = list(request.POST.keys())
