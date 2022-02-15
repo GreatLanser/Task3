@@ -34,3 +34,15 @@ class Users(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+def change_user(action, user_id):
+    user = Users.objects.get(id=user_id)
+    if action == 'block':
+        user.is_blocked = 1
+        user.save()
+    elif action == 'unblock':
+        user.is_blocked = 0
+        user.save()
+    elif action == 'delete':
+        user.delete()

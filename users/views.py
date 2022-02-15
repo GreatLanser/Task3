@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Users
+from .models import Users, change_user
 from .forms import UserRegistrationForm
-from django.http import HttpRequest, HttpResponse
 
 
 def register(request):
@@ -21,15 +20,15 @@ def register(request):
 def status_change(request):
     if request.method == 'POST':
         if request.POST:
-            content = request.POST.get('unblock', 'not')
-            return render(request, 'users/status_change.html', {
-                'title': 'hehe',
-                'content': content,
-            })
+            keys = list(request.POST.keys())
+            action = keys[1]
+            users_id = keys[3:] if 'select_all' in keys else keys[2:]
+            for user_id in users_id:
+                change_user(action, user_id)
+            return render(request, 'users/status_change.html')
 
 
 class UserListView(generic.ListView):
     model = Users
     template_name = 'users/users.html'
     context_object_name = 'users_list'
-

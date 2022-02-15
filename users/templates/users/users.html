@@ -1,4 +1,7 @@
 {% extends 'users/layout.html' %}
+
+{% block title %}User list{% endblock %}
+
 {% block content %}
     <script>
         function change_all() {
@@ -19,12 +22,11 @@
         {% csrf_token %}
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-secondary" name="block">Block</button>
-                    <button type="button" class="btn btn-secondary" name="unblock">Unblock</button>
-                    <button type="button" class="btn btn-secondary" name="delete">Delete</button>
+                    <button type="submit" class="btn btn-secondary" name="block">Block</button>
+                    <button type="submit" class="btn btn-secondary" name="unblock">Unblock</button>
+                    <button type="submit" class="btn btn-secondary" name="delete">Delete</button>
                 </div>
             </div>
-            <input type="submit" value="Submit" />
         <table class="table">
             <tr>
                 <th>

@@ -11,7 +11,7 @@
        {% endif %}
     </ul>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{% block title %}{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" />
 </head>
