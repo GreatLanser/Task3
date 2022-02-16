@@ -131,4 +131,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTH_USER_MODEL = 'users.Users'
 
-django_heroku.settings(locals())
