@@ -130,6 +130,3 @@ LOGIN_REDIRECT_URL = '/users'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTH_USER_MODEL = 'users.Users'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
